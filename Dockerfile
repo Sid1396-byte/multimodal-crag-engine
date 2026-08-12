@@ -1,14 +1,5 @@
 FROM python:3.11-slim
 
-# Install system dependencies for Unstructured.io, OCR, and PDF processing
-RUN apt-get update && apt-get install -y \
-    poppler-utils \
-    tesseract-ocr \
-    libmagic-dev \
-    gcc \
-    g++ \
-    && rm -rf /var/lib/apt/lists/*
-
 WORKDIR /workspace
 
 COPY requirements.txt .
