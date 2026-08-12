@@ -215,15 +215,41 @@ marked.use(window.markedKatex({ throwOnError: false }));
             try {
                 const res = await fetch('/api/upload', { method: 'POST', body: formData });
                 const data = await res.json();
-                document.getElementById(`up-${tid}`).innerHTML = `<div class="avatar-ai" style="background:var(--accent-green); box-shadow: 0 0 15px var(--accent-green-glow);">✓</div><div class="ai-content-body" style="color:var(--accent-green); font-weight: 600;">${data.message}</div>`;
-                sessions[activeSessionId].messages.push({ id: `up-${tid}`, html: document.getElementById(`up-${tid}`).outerHTML });
+                
+                if (data.status !== "success") throw new Error(data.message || "Upload failed");
+                
+                // Safe DOM update
+                const msgEl = document.getElementById(`up-${tid}`);
+                const successHtml = `<div class="avatar-ai" style="background:var(--accent-green); box-shadow: 0 0 15px var(--accent-green-glow);">✅</div><div class="ai-content-body" style="color:var(--accent-green); font-weight: 600;">${data.message}</div>`;
+                
+                if (msgEl) {
+                    msgEl.innerHTML = successHtml;
+                }
+                
+                // Update session state properly
+                const msgIndex = sessions[activeSessionId].messages.findIndex(m => m.id === `up-${tid}`);
+                const finalHtml = `<div class="msg-block system-msg" id="up-${tid}">${successHtml}</div>`;
+                
+                if (msgIndex !== -1) {
+                    sessions[activeSessionId].messages[msgIndex].html = finalHtml;
+                } else {
+                    sessions[activeSessionId].messages.push({ id: `up-${tid}`, html: finalHtml });
+                }
                 
                 sessions[activeSessionId].hasDocument = true;
                 saveState();
                 updateInputState();
+                if (!msgEl) renderChatStream();
 
             } catch (err) {
-                document.getElementById(`up-${tid}`).innerHTML = `<div class="ai-content-body" style="color:#ef4444; font-weight:bold;">Error uploading document.</div>`;
+                console.error("Upload error:", err);
+                const errorHtml = `<div class="ai-content-body" style="color:#ef4444; font-weight:bold;">Error uploading document: Timeout or Network Issue.</div>`;
+                const msgEl = document.getElementById(`up-${tid}`);
+                if (msgEl) msgEl.innerHTML = errorHtml;
+                
+                const msgIndex = sessions[activeSessionId].messages.findIndex(m => m.id === `up-${tid}`);
+                if (msgIndex !== -1) sessions[activeSessionId].messages[msgIndex].html = `<div class="msg-block system-msg" id="up-${tid}">${errorHtml}</div>`;
+                saveState();
             }
         });
 
