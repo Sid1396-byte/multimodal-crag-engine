@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrueQuery - Advanced Retrieval Pipeline</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="/static/css/landing.css">
+</head>
+<body>
+
+    <div class="bg-mesh"></div>
+
+    <nav>
+        <a href="#" class="brand"><div class="brand-icon"></div> TrueQuery</a>
+        <div class="nav-links">
+            <a href="/workspace?view=architecture">Architecture</a>
+            <a href="#" style="display:flex; align-items:center; gap:6px;" title="Link to repository after upload">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                GitHub
+            </a>
+        </div>
+        <a href="/workspace" class="btn">Launch Workspace</a>
+    </nav>
+
+    <main class="hero">
+        <h1>True<span class="text-glow">Query</span></h1>
+        <p>Honest answers from your data. Verified, graded, and cited.</p>
+        
+        <div class="hero-actions">
+            <a href="/workspace" class="btn-glow">Initialize Workflow <span>&rarr;</span></a>
+        </div>
+        
+        <div class="scroll-explore">
+            <span>Scroll to Explore</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+
+        <div class="hero-visual-wrapper">
+            <div class="scene-3d">
+                
+                <!-- 1. Code Terminal -->
+                <div class="glass-obj obj-term">
+                    <div class="obj-header">
+                        <div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div>
+                    </div>
+                    <div class="term-code">
+                        <span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> Graph<br><br>
+                        workflow = Graph()<br>
+                        workflow.add_node(<span class="string">"retrieve"</span>, qdrant_retriever)<br>
+                        workflow.add_node(<span class="string">"grade"</span>, relevance_grader)<br>
+                        workflow.add_node(<span class="string">"generate"</span>, gemini_synth)<br><br>
+                        workflow.compile()
+                    </div>
+                </div>
+
+                <!-- 2. Document Scanning -->
+                <div class="glass-obj obj-doc">
+                    <div class="scan-laser"></div>
+                    <div class="doc-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <div class="doc-line w-full"></div>
+                    <div class="doc-line w-full"></div>
+                    <div class="doc-line short"></div>
+                    <div class="doc-line w-full" style="margin-top:20px;"></div>
+                    <div class="doc-line short"></div>
+                </div>
+
+                <!-- 3. Chat Interface -->
+                <div class="glass-obj obj-chat">
+                    <div class="chat-bubble">
+                        <div class="chat-line l1"><strong style="color: #a78bfa;">System:</strong> Evaluating context...</div>
+                        <div class="chat-line l2">✓ 15 chunks passed relevance grading.</div>
+                        <div class="chat-line l3">✓ Answer is faithful to retrieved documents.</div>
+                        <div class="chat-line l4" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.1);">
+                            <strong>Answer:</strong> Based on the document, the system utilizes a dual-track ingestion method to process PDFs before routing queries.
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <div class="chat-input-text">
+                            <span class="placeholder">Ask TrueQuery...</span>
+                            <span class="query">Can you explain the architecture in the document?</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <section id="features" class="features">
+        <div class="feature-card">
+            <div class="icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <h3>Process every detail.</h3>
+            <p>Simultaneously extract text, tables, and visual figures from complex PDFs using the Unstructured API and PyMuPDF.</p>
+        </div>
+        
+        <div class="feature-card c-purple">
+            <div class="icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+            </div>
+            <h3>Retrieve with precision.</h3>
+            <p>Merge dense and sparse embeddings via Reciprocal Rank Fusion (RRF) to surface the absolute most relevant context.</p>
+        </div>
+
+        <div class="feature-card c-green">
+            <div class="icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Verify automatically.</h3>
+            <p>LangGraph intercepts and grades retrieved chunks, dynamically rewriting poor queries before generating the final answer.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="brand"><div class="brand-icon" style="width: 16px; height: 16px;"></div> TrueQuery</div>
+        <div class="footer-text">© 2026 TrueQuery. Built for technical observability.</div>
+    </footer>
+
+</body>
+</html>

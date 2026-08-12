@@ -1,0 +1,15 @@
+fastapi>=0.110.0
+uvicorn>=0.29.0
+python-multipart>=0.0.9
+qdrant-client>=1.8.0
+unstructured[pdf]>=0.23.1
+langchain>=0.1.13
+langgraph>=0.0.30
+langchain-google-genai>=1.0.1
+deepeval>=0.21.25
+pydantic>=2.6.4
+pymupdf
+cohere
+fastembed
+requests
+python-dotenv
