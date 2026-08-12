@@ -63,7 +63,7 @@ def process_and_store_pdf(file_path: str, session_id: str):
     # ==========================================
     # 🚀 TRACK 1: UNSTRUCTURED (Text, Layout & Tables)
     # ==========================================
-    print(f"📄 [TRACK 1] Starting Unstructured text and table extraction...")
+    print(f"📄 [TRACK 1] Starting Unstructured text and table extraction...", flush=True)
     api_url = os.getenv("UNSTRUCTURED_API_URL", "https://api.unstructured.io/general/v0/general")
     api_key = os.getenv("UNSTRUCTURED_API_KEY", "")
     headers = {"accept": "application/json", "unstructured-api-key": api_key}
@@ -134,7 +134,7 @@ def process_and_store_pdf(file_path: str, session_id: str):
     # ==========================================
     # 🚀 TRACK 2: PYMUPDF (Smart Radar for Vectors AND Raster Images)
     # ==========================================
-    print(f"📊 [TRACK 2] Running PyMuPDF Smart Radar for Vector Charts & Images...")
+    print(f"📊 [TRACK 2] Running PyMuPDF Smart Radar for Vector Charts & Images...", flush=True)
     try:
         doc = fitz.open(file_path)
         for page_index in range(len(doc)):
@@ -198,6 +198,6 @@ def process_and_store_pdf(file_path: str, session_id: str):
 
     if points: 
         qdrant_client.upsert(collection_name=COLLECTION_NAME, points=points)
-        print(f"✅ Successfully ingested {len(points)} chunks into Qdrant.")
+        print(f"✅ Successfully ingested {len(points)} chunks into Qdrant.", flush=True)
         
     return len(points)
