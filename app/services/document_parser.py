@@ -78,7 +78,7 @@ def process_and_store_pdf(file_path: str, session_id: str):
             "combine_under_n_chars": 500,
             "extract_image_block_types": '["Image", "Figure", "Picture", "Graphic"]' 
         }
-        response = requests.post(api_url, headers=headers, files=files, data=data)
+        response = requests.post(api_url, headers=headers, files=files, data=data, timeout=120.0)
         if response.status_code != 200:
             raise Exception(f"Unstructured API Error {response.status_code}: {response.text}")
         elements = response.json()
