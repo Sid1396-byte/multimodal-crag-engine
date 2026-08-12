@@ -52,6 +52,14 @@ graph TD
     end
     
     S -->|SSE Data Stream| T[TrueQuery UI]
+    
+    subgraph 4. Background Telemetry & Evaluation
+        T -->|Async Background Request| U[DeepEval Metrics Engine]
+        U --> V[Faithfulness Metric]
+        U --> W[Answer Relevancy Metric]
+        V -->|Streams to UI| T
+        W -->|Streams to UI| T
+    end
 ```
 
 ---
