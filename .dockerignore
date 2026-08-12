@@ -13,3 +13,4 @@ htmlcov/
 debug_crops/
 *.pdf
 *.log
+.deepeval/
