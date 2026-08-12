@@ -56,7 +56,7 @@ marked.use(window.markedKatex({ throwOnError: false }));
             );
         }
 
-        let userId = "usr_" + crypto.randomUUID(); 
+        let userId = "usr_" + (Date.now().toString(36) + Math.random().toString(36).substring(2)); 
         
         // Wipe state if the user explicitly hard-refreshes (F5)
         const navEntries = performance.getEntriesByType("navigation");
@@ -95,7 +95,7 @@ marked.use(window.markedKatex({ throwOnError: false }));
         }
 
         function createNewWorkspace() {
-            activeSessionId = "sess_" + crypto.randomUUID();
+            activeSessionId = "sess_" + (Date.now().toString(36) + Math.random().toString(36).substring(2));
             sessions[activeSessionId] = { title: "New Workspace", messages: [], hasDocument: false };
             saveState();
             renderHistoryList(); renderChatStream(); updateInputState();
